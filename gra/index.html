@@ -108,24 +108,36 @@ canvas{display:block;cursor:crosshair}
 #pause-overlay h2{color:#fff;font-size:3rem;letter-spacing:6px;text-shadow:0 0 30px rgba(230,57,70,.6);}
 
 /* HUD */
-#hud{display:none;position:fixed;top:12px;left:12px;z-index:10}
-#hud .stat{
-  background:rgba(0,0,0,.75);backdrop-filter:blur(4px);padding:7px 14px;
-  border-radius:8px;margin-bottom:5px;font-size:.9rem;
-  border-left:3px solid #e63946;
+#hud{
+  display:none;position:fixed;top:12px;left:12px;z-index:10;
+  min-width:176px;padding:10px 10px 8px;
+  background:linear-gradient(180deg,rgba(14,14,16,.94),rgba(3,3,5,.9));
+  border:1px solid rgba(230,57,70,.52);border-radius:8px;
+  box-shadow:0 0 0 1px rgba(0,0,0,.65),0 12px 34px rgba(0,0,0,.55),inset 0 0 24px rgba(110,0,0,.16);
+  backdrop-filter:blur(5px);
 }
+#hud::before{content:'KRAKÓW';display:block;margin:0 0 7px;color:#e63946;font-weight:900;font-size:.72rem;letter-spacing:2.5px;text-align:center;text-shadow:0 0 9px rgba(230,57,70,.45)}
+#hud .stat{
+  background:linear-gradient(90deg,rgba(70,0,0,.45),rgba(0,0,0,.2));padding:6px 10px;
+  border-radius:4px;margin-bottom:5px;font-size:.78rem;font-weight:800;letter-spacing:.4px;
+  border-left:3px solid #e63946;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#eee;text-shadow:0 1px 2px #000;
+}
+#hud-health{color:#fff}
+#hud-heat,#hud-streak{color:#ffb1a8}
 
 /* LEADERBOARD */
 #leaderboard{
   display:none;position:fixed;top:12px;right:12px;
-  background:rgba(0,0,0,.8);backdrop-filter:blur(6px);
-  border:1px solid rgba(230,57,70,.4);border-radius:10px;
-  padding:14px;min-width:190px;z-index:10;
+  background:linear-gradient(180deg,rgba(12,12,14,.95),rgba(3,3,4,.9));backdrop-filter:blur(6px);
+  border:1px solid rgba(230,57,70,.5);border-radius:8px;
+  padding:12px;min-width:210px;z-index:10;
+  box-shadow:0 12px 32px rgba(0,0,0,.55),inset 0 0 22px rgba(90,0,0,.2);
 }
-#leaderboard h3{color:#e63946;margin-bottom:10px;font-size:.85rem;text-align:center;text-transform:uppercase;letter-spacing:2px;}
-.lb-entry{display:flex;justify-content:space-between;padding:4px 2px;font-size:.8rem;border-bottom:1px solid rgba(255,255,255,.08);gap:10px}
+#leaderboard h3{color:#e63946;margin-bottom:9px;font-size:.88rem;text-align:center;text-transform:uppercase;letter-spacing:2.2px;text-shadow:0 0 8px rgba(230,57,70,.45)}
+.lb-entry{display:flex;justify-content:space-between;padding:4px 2px;font-size:.78rem;border-bottom:1px solid rgba(230,57,70,.16);gap:10px;color:#c8c2bb}
 .lb-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lb-entry.me{color:#e63946;font-weight:bold}
+.lb-entry.me{color:#ff4a55;font-weight:900;text-shadow:0 0 8px rgba(230,57,70,.35)}
 
 /* DEATH SCREEN */
 #death-screen{
@@ -202,7 +214,7 @@ canvas{display:block;cursor:crosshair}
     margin-bottom:0;padding:4px 7px;border-radius:6px;border-left-width:2px;
     font-size:.68rem;line-height:1.15;max-width:78px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
-  #leaderboard{top:8px;right:8px;width:112px;min-width:0;padding:8px;border-radius:8px}
+  #leaderboard{top:8px;right:8px;width:118px;min-width:0;padding:8px;border-radius:7px}
   #leaderboard h3{margin-bottom:5px;font-size:.62rem;letter-spacing:.8px}
   .lb-entry{padding:2px 1px;font-size:.62rem;gap:5px}
   .lb-entry span:last-child{flex:none;margin-left:0}
@@ -274,13 +286,13 @@ canvas{display:block;cursor:crosshair}
 
 <!-- HUD -->
 <div id="hud">
-  <div class="stat" id="hud-health">❤️ 100</div>
-  <div class="stat" id="hud-score">🪙 0</div>
-  <div class="stat" id="hud-kills">🔪 0</div>
-  <div class="stat" id="hud-rank" style="border-left-color:#ffd700">⭐ Świeżak</div>
-  <div class="stat" id="hud-bounty" style="border-left-color:#ff9800">🎯 Szukam frajera...</div>
-  <div class="stat" id="hud-heat" style="border-left-color:#ff5722">🔥 Dym 1</div>
-  <div class="stat" id="hud-dash" style="border-left-color:#4af">💨 Wjazd gotowy</div>
+  <div class="stat" id="hud-health">ŻYCIE 100</div>
+  <div class="stat" id="hud-score">POZIOM 0</div>
+  <div class="stat" id="hud-kills">☠ 0</div>
+  <div class="stat" id="hud-rank" style="border-left-color:#ffd700">MACZETA Świeżak</div>
+  <div class="stat" id="hud-bounty" style="border-left-color:#ff9800">CEL DO SKROJENIA...</div>
+  <div class="stat" id="hud-heat" style="border-left-color:#ff5722">SZAŁ 1</div>
+  <div class="stat" id="hud-dash" style="border-left-color:#4af">WJAZD gotowy</div>
   <div class="stat" id="hud-streak" style="display:none;border-left-color:#f4a261;transition:opacity 0.4s"></div>
 </div>
 
@@ -483,13 +495,21 @@ for (const r of ROADS) {
   const horizontal = r.w > r.h;
   const count = Math.floor((horizontal ? r.w : r.h) / 220);
   for (let i = 1; i < count; i++) {
+    const typeCycle = ['lamp','bench','trash','drain','busstop','lamp','planter'];
     STREET_PROPS.push({
       x: r.x + (horizontal ? i * 220 : r.w + 18),
       y: r.y + (horizontal ? r.h + 18 : i * 220),
-      type: i % 3 === 0 ? 'bench' : 'lamp',
+      type: typeCycle[i % typeCycle.length],
+      horizontal,
     });
   }
 }
+STREET_PROPS.push(
+  { x: 2480, y: 1805, type: 'store', name: 'ŻABIX' },
+  { x: 3550, y: 1715, type: 'store', name: 'ROPUCHA' },
+  { x: 980, y: 2428, type: 'busstop' },
+  { x: 2920, y: 3065, type: 'busstop' }
+);
 
 // Decorative trees
 const TREES = [];
@@ -850,12 +870,13 @@ function addBloodSplatter(x, y, angle, count, spread) {
 
 function addBloodPool(x, y) {
   bloodPools.push({
-    x: x + rng(-10, 10), y: y + rng(-5, 5),
-    r: rng(8, 18), alpha: 0.6,
-    color: Math.random() > 0.4 ? '#5a0000' : '#700000',
+    x: x + rng(-12, 12), y: y + rng(-6, 6),
+    r: rng(10, 24), alpha: 0.72,
+    rot: rng(0, Math.PI),
+    color: Math.random() > 0.4 ? '#3f0000' : '#650000',
   });
   // Keep pool count bounded
-  if (bloodPools.length > 80) bloodPools.splice(0, 5);
+  if (bloodPools.length > 70) bloodPools.splice(0, 6);
 }
 
 function rectVisible(x, y, w, h, pad = 40) {
@@ -1468,11 +1489,11 @@ function update(dt) {
 
   // HUD
   if (me) {
-    document.getElementById('hud-health').textContent = `❤️ ${Math.ceil(me.health)}`;
-    document.getElementById('hud-score').textContent = `🪙 ${me.score}`;
-    document.getElementById('hud-kills').textContent = `🔪 ${me.kills}`;
-    hudRank.textContent = `⭐ ${getRank(me.score).name}`;
-    hudHeat.textContent = `🔥 Dym ${heatLevel}`;
+    document.getElementById('hud-health').textContent = `ŻYCIE ${Math.ceil(me.health)}/100`;
+    document.getElementById('hud-score').textContent = `POZIOM ${Math.floor(me.score / 1000)} · ${me.score}`;
+    document.getElementById('hud-kills').textContent = `☠ ${me.kills}`;
+    hudRank.textContent = `MACZETA ${getRank(me.score).name}`;
+    hudHeat.textContent = `SZAŁ ${heatLevel}`;
     const dashLeft = Math.max(0, dashCooldownUntil - gameTime);
     hudDash.textContent = dashLeft > 0
       ? (isCompactLayout() ? `💨 ${(dashLeft / 1000).toFixed(1)}s` : `💨 Wjazd ${(dashLeft / 1000).toFixed(1)}s`)
@@ -1480,9 +1501,9 @@ function update(dt) {
     if (bountyTarget && bountyTarget.alive) {
       const bountyLeft = Math.max(0, Math.ceil((bountyExpires - gameTime) / 1000));
       const bountyDist = Math.round(dist(me, bountyTarget));
-      hudBounty.textContent = isCompactLayout() ? `🎯 ${bountyDist}m ${bountyLeft}s` : `🎯 ${bountyTarget.name} ${bountyDist}m · ${bountyLeft}s`;
+      hudBounty.textContent = isCompactLayout() ? `CEL ${bountyDist}m ${bountyLeft}s` : `CEL DO SKROJENIA ${bountyTarget.name} ${bountyDist}m · ${bountyLeft}s`;
     } else {
-      hudBounty.textContent = isCompactLayout() ? '🎯 ...' : '🎯 Szukam frajera...';
+      hudBounty.textContent = isCompactLayout() ? 'CEL ...' : 'CEL DO SKROJENIA...';
     }
     if (isPlayerFury()) {
       hudStreak.style.display = 'block';
@@ -1502,229 +1523,164 @@ function update(dt) {
 // ========== RENDER (2.5D) ==========
 
 // --- Ground layer (flat surface: grass, grid, river, blood) ---
+function drawCobblePattern(x, y, w, h, seed = 0) {
+  ctx.fillStyle = 'rgba(255,255,255,0.025)';
+  const tile = 28;
+  const startX = Math.floor((camera.x - x) / tile) * tile;
+  const startY = Math.floor((camera.y - y) / 18) * 18;
+  for (let tx = startX; tx < w + camera.x - x + tile; tx += tile) {
+    for (let ty = startY; ty < h + camera.y - y + 18; ty += 18) {
+      const jitter = (((tx + seed) * 31 + ty * 17) & 3) - 1.5;
+      const sx = x + tx - camera.x;
+      const sy = y + ty - camera.y;
+      ctx.strokeStyle = 'rgba(0,0,0,0.28)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(sx + jitter, sy, tile - 3, 16);
+      if ((((tx / tile) + (ty / 18)) & 1) === 0) {
+        ctx.fillRect(sx + 4, sy + 3, tile - 10, 2);
+      }
+    }
+  }
+}
+
+function drawStreetProp(pr) {
+  const sx = pr.x - camera.x, sy = pr.y - camera.y;
+  if (sx < -90 || sx > canvas.width + 90 || sy < -90 || sy > canvas.height + 90) return;
+  if (pr.type === 'lamp') {
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    const g = ctx.createRadialGradient(sx, sy - 22, 0, sx, sy - 22, 74);
+    g.addColorStop(0, 'rgba(255,199,104,.22)');
+    g.addColorStop(1, 'rgba(255,199,104,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(sx, sy - 22, 74, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle = '#111'; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(sx, sy + 18); ctx.lineTo(sx, sy - 20); ctx.stroke();
+    ctx.fillStyle = '#070707'; ctx.fillRect(sx - 5, sy + 15, 10, 5);
+    ctx.beginPath(); ctx.arc(sx, sy - 25, 7, 0, Math.PI * 2); ctx.fillStyle = '#f0c15d'; ctx.fill();
+  } else if (pr.type === 'bench') {
+    ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(sx - 20, sy + 6, 42, 6);
+    ctx.fillStyle = '#6b3f22'; ctx.fillRect(sx - 22, sy - 8, 44, 6); ctx.fillRect(sx - 22, sy, 44, 5);
+    ctx.strokeStyle = '#23160d'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(sx - 16, sy + 4); ctx.lineTo(sx - 16, sy + 14); ctx.moveTo(sx + 16, sy + 4); ctx.lineTo(sx + 16, sy + 14); ctx.stroke();
+  } else if (pr.type === 'busstop') {
+    ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(sx - 34, sy + 14, 74, 8);
+    ctx.fillStyle = '#2c3134'; ctx.fillRect(sx - 34, sy - 24, 68, 8);
+    ctx.fillStyle = 'rgba(120,170,190,.22)'; ctx.fillRect(sx - 28, sy - 18, 54, 28);
+    ctx.strokeStyle = '#111'; ctx.lineWidth = 3; ctx.strokeRect(sx - 30, sy - 20, 58, 34);
+    ctx.fillStyle = '#6b3f22'; ctx.fillRect(sx - 18, sy + 2, 36, 5);
+    ctx.fillStyle = '#1f4f86'; ctx.fillRect(sx + 42, sy - 22, 15, 18);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 8px sans-serif'; ctx.textAlign = 'center'; ctx.fillText('BUS', sx + 49, sy - 10);
+  } else if (pr.type === 'trash') {
+    ctx.fillStyle = '#111'; ctx.fillRect(sx - 6, sy - 9, 12, 18);
+    ctx.fillStyle = '#2b3330'; ctx.fillRect(sx - 5, sy - 8, 10, 16);
+    ctx.strokeStyle = '#56605a'; ctx.strokeRect(sx - 5, sy - 8, 10, 16);
+  } else if (pr.type === 'drain') {
+    ctx.fillStyle = '#0c0c0d'; ctx.fillRect(sx - 12, sy - 8, 24, 16);
+    ctx.strokeStyle = '#3b3b3d'; ctx.lineWidth = 1;
+    for (let i = -8; i <= 8; i += 4) { ctx.beginPath(); ctx.moveTo(sx + i, sy - 7); ctx.lineTo(sx + i, sy + 7); ctx.stroke(); }
+  } else if (pr.type === 'planter') {
+    ctx.fillStyle = '#33312b'; ctx.fillRect(sx - 14, sy - 12, 28, 24);
+    ctx.fillStyle = '#1c4c1e'; ctx.beginPath(); ctx.ellipse(sx, sy - 6, 14, 8, 0, 0, Math.PI * 2); ctx.fill();
+  } else if (pr.type === 'store') {
+    ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(sx - 58, sy + 30, 124, 12);
+    ctx.fillStyle = '#122015'; ctx.fillRect(sx - 54, sy - 34, 108, 68);
+    ctx.fillStyle = '#102f14'; ctx.fillRect(sx - 48, sy - 18, 96, 45);
+    ctx.fillStyle = 'rgba(255,225,120,.55)';
+    for (let i = -34; i <= 34; i += 23) ctx.fillRect(sx + i, sy - 9, 15, 25);
+    ctx.fillStyle = '#39d33d'; ctx.fillRect(sx - 54, sy - 34, 108, 18);
+    ctx.fillStyle = '#071707'; ctx.font = '900 16px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(pr.name || 'SKLEPIK', sx, sy - 20);
+    ctx.strokeStyle = '#0b0b0b'; ctx.lineWidth = 3; ctx.strokeRect(sx - 54, sy - 34, 108, 68);
+  }
+}
+
+// --- Ground layer (Kraków/Nowa Huta street surface, props and decals) ---
 function drawGround() {
-  // Grass with directional lighting (NW light source)
-  const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  grd.addColorStop(0, '#305e18');
-  grd.addColorStop(0.5, '#275014');
-  grd.addColorStop(1, '#1c3a0c');
-  ctx.fillStyle = grd;
+  const bg = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  bg.addColorStop(0, '#111417');
+  bg.addColorStop(0.55, '#0b0d10');
+  bg.addColorStop(1, '#050608');
+  ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Kraków districts: roads, plazas, parks and water attractions
+  const tile = 96;
+  const startX = Math.floor(camera.x / tile) * tile;
+  const startY = Math.floor(camera.y / tile) * tile;
+  for (let x = startX; x < camera.x + canvas.width + tile; x += tile) {
+    for (let y = startY; y < camera.y + canvas.height + tile; y += tile) {
+      const sx = x - camera.x, sy = y - camera.y;
+      ctx.fillStyle = ((x / tile + y / tile) & 1) ? '#14171a' : '#101316';
+      ctx.fillRect(sx, sy, tile, tile);
+      drawCobblePattern(x, y, tile, tile, 11);
+    }
+  }
+
   for (const pz of PLAZAS) {
     if (!rectVisible(pz.x, pz.y, pz.w, pz.h)) continue;
     const px = pz.x - camera.x, py = pz.y - camera.y;
-    ctx.fillStyle = pz.color;
+    ctx.fillStyle = pz.name === 'Zalew Zakrzówek' ? '#173447' : '#1b1b1d';
     ctx.fillRect(px, py, pz.w, pz.h);
-    ctx.strokeStyle = pz.stroke;
-    ctx.lineWidth = 3;
-    ctx.strokeRect(px + 2, py + 2, pz.w - 4, pz.h - 4);
-    ctx.fillStyle = 'rgba(255,255,255,0.06)';
-    for (let tx = 0; tx < pz.w; tx += 34) {
-      for (let ty = 0; ty < pz.h; ty += 34) {
-        if (((tx + ty) / 34) % 2 === 0) ctx.fillRect(px + tx, py + ty, 17, 17);
-      }
-    }
-    ctx.fillStyle = 'rgba(0,0,0,0.5)';
-    ctx.font = 'bold 13px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(pz.name, px + pz.w / 2, py + 22);
+    drawCobblePattern(pz.x, pz.y, pz.w, pz.h, 37);
+    ctx.strokeStyle = 'rgba(180,180,170,.16)'; ctx.lineWidth = 3; ctx.strokeRect(px + 2, py + 2, pz.w - 4, pz.h - 4);
+    ctx.fillStyle = 'rgba(230,57,70,.18)'; ctx.font = 'bold 13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(pz.name === 'Nowa Huta' ? 'NOWA HUTA' : pz.name.toUpperCase(), px + pz.w / 2, py + 22);
   }
 
   for (const r of ROADS) {
     if (!rectVisible(r.x, r.y, r.w, r.h)) continue;
     const rx = r.x - camera.x, ry = r.y - camera.y;
     const roadGrad = ctx.createLinearGradient(rx, ry, rx, ry + r.h);
-    roadGrad.addColorStop(0, '#2b2b2d');
-    roadGrad.addColorStop(0.5, '#3a3836');
-    roadGrad.addColorStop(1, '#242426');
-    ctx.fillStyle = roadGrad;
-    ctx.fillRect(rx, ry, r.w, r.h);
-    ctx.strokeStyle = 'rgba(255,220,120,0.28)';
-    ctx.lineWidth = 2;
+    roadGrad.addColorStop(0, '#242529'); roadGrad.addColorStop(0.5, '#17181b'); roadGrad.addColorStop(1, '#0d0e11');
+    ctx.fillStyle = roadGrad; ctx.fillRect(rx, ry, r.w, r.h);
+    ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 2;
+    ctx.strokeRect(rx, ry, r.w, r.h);
+    ctx.strokeStyle = 'rgba(230,57,70,.18)';
     if (r.w > r.h) {
-      const wet = ctx.createLinearGradient(rx, ry, rx + r.w, ry);
-      wet.addColorStop(0, 'rgba(255,255,255,0)');
-      wet.addColorStop(0.45, 'rgba(255,255,255,0.08)');
-      wet.addColorStop(0.55, 'rgba(120,180,255,0.08)');
-      wet.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.fillStyle = wet;
-      ctx.fillRect(rx, ry + r.h * 0.18, r.w, r.h * 0.18);
-      for (let x = rx + 20; x < rx + r.w; x += 80) {
-        ctx.beginPath(); ctx.moveTo(x, ry + r.h / 2); ctx.lineTo(x + 36, ry + r.h / 2); ctx.stroke();
+      for (let x = rx + 28; x < rx + r.w; x += 92) { ctx.beginPath(); ctx.moveTo(x, ry + r.h / 2); ctx.lineTo(x + 38, ry + r.h / 2); ctx.stroke(); }
+      for (let x = rx + 120; x < rx + r.w; x += 720) {
+        ctx.fillStyle = 'rgba(230,230,220,.44)';
+        for (let i = 0; i < 6; i++) ctx.fillRect(x + i * 16, ry + 8, 9, r.h - 16);
       }
     } else {
-      const wet = ctx.createLinearGradient(rx, ry, rx, ry + r.h);
-      wet.addColorStop(0, 'rgba(255,255,255,0)');
-      wet.addColorStop(0.45, 'rgba(255,255,255,0.07)');
-      wet.addColorStop(0.55, 'rgba(120,180,255,0.07)');
-      wet.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.fillStyle = wet;
-      ctx.fillRect(rx + r.w * 0.16, ry, r.w * 0.18, r.h);
-      for (let y = ry + 20; y < ry + r.h; y += 80) {
-        ctx.beginPath(); ctx.moveTo(rx + r.w / 2, y); ctx.lineTo(rx + r.w / 2, y + 36); ctx.stroke();
-      }
+      for (let y = ry + 28; y < ry + r.h; y += 92) { ctx.beginPath(); ctx.moveTo(rx + r.w / 2, y); ctx.lineTo(rx + r.w / 2, y + 38); ctx.stroke(); }
     }
   }
 
-  // Subtle grass noise (small patches)
-  const gs = 80;
-  const gsx = Math.floor(camera.x / gs) * gs;
-  const gsy = Math.floor(camera.y / gs) * gs;
-  for (let x = gsx; x < camera.x + canvas.width + gs; x += gs) {
-    for (let y = gsy; y < camera.y + canvas.height + gs; y += gs) {
-      const hash = ((x * 73856093) ^ (y * 19349663)) & 0xff;
-      if (hash < 40) {
-        const px = x - camera.x + (hash % 60), py = y - camera.y + ((hash * 3) % 60);
-        ctx.fillStyle = hash < 20 ? 'rgba(60,100,30,0.15)' : 'rgba(20,50,10,0.12)';
-        ctx.beginPath(); ctx.ellipse(px, py, 8 + hash % 10, 4 + hash % 5, 0, 0, Math.PI * 2); ctx.fill();
-      }
-    }
-  }
-
-  // Grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.03)'; ctx.lineWidth = 1;
-  for (let x = gsx; x < camera.x + canvas.width + gs; x += gs) {
-    ctx.beginPath(); ctx.moveTo(x - camera.x, 0); ctx.lineTo(x - camera.x, canvas.height); ctx.stroke();
-  }
-  for (let y = gsy; y < camera.y + canvas.height + gs; y += gs) {
-    ctx.beginPath(); ctx.moveTo(0, y - camera.y); ctx.lineTo(canvas.width, y - camera.y); ctx.stroke();
-  }
-
-  // River with banks
   const riverTime = gameTime * 0.001;
   for (const r of RIVER) {
     const rx = r.x - camera.x, ry = r.y - camera.y;
     if (rx + r.w < -10 || rx > canvas.width + 10 || ry + r.h + 10 < 0 || ry > canvas.height + 10) continue;
-    // Riverbank (earthy edges)
-    ctx.fillStyle = '#3a2a18';
-    ctx.fillRect(rx - 5, ry - 5, r.w + 10, r.h + 10);
-    ctx.fillStyle = '#4a3a24';
-    ctx.fillRect(rx - 2, ry - 2, r.w + 4, r.h + 4);
-    // Water body
+    ctx.fillStyle = '#071014'; ctx.fillRect(rx - 5, ry - 5, r.w + 10, r.h + 10);
     const wg = ctx.createLinearGradient(rx, ry, rx, ry + r.h);
-    wg.addColorStop(0, '#1058a0');
-    wg.addColorStop(0.3, '#1878c4');
-    wg.addColorStop(0.7, '#1a82d0');
-    wg.addColorStop(1, '#1058a0');
-    ctx.fillStyle = wg;
-    ctx.fillRect(rx, ry, r.w, r.h);
-    // Main shimmer
-    ctx.fillStyle = 'rgba(255,255,255,0.10)';
-    for (let wx = 0; wx < r.w; wx += 24) {
-      const wy = Math.sin(riverTime * 2 + wx * 0.05) * 4;
-      ctx.fillRect(rx + wx, ry + r.h / 2 + wy, 12, 2);
-    }
-    // Secondary shimmer
-    ctx.fillStyle = 'rgba(200,230,255,0.06)';
-    for (let wx = 10; wx < r.w; wx += 32) {
-      const wy = Math.sin(riverTime * 1.4 + wx * 0.07 + 1) * 3;
-      ctx.fillRect(rx + wx, ry + r.h * 0.3 + wy, 10, 1.5);
-    }
-    // Reflections and reeds along the banks.
-    ctx.fillStyle = 'rgba(255,185,80,0.08)';
-    for (let wx = 12; wx < r.w; wx += 70) {
-      const h = 12 + Math.sin(riverTime * 2.2 + wx * 0.04) * 6;
-      ctx.fillRect(rx + wx, ry + r.h * 0.62, 22, h);
-    }
-    ctx.strokeStyle = 'rgba(80,115,35,0.45)';
-    ctx.lineWidth = 1;
-    for (let wx = 6; wx < r.w; wx += 38) {
-      const lean = Math.sin(riverTime + wx) * 3;
-      ctx.beginPath(); ctx.moveTo(rx + wx, ry + 2); ctx.lineTo(rx + wx + lean, ry - 12); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(rx + wx + 14, ry + r.h - 2); ctx.lineTo(rx + wx + 14 - lean, ry + r.h + 13); ctx.stroke();
-    }
+    wg.addColorStop(0, '#0a2231'); wg.addColorStop(0.5, '#10394c'); wg.addColorStop(1, '#071c28');
+    ctx.fillStyle = wg; ctx.fillRect(rx, ry, r.w, r.h);
+    ctx.fillStyle = 'rgba(120,180,210,.12)';
+    for (let wx = 0; wx < r.w; wx += 28) ctx.fillRect(rx + wx, ry + r.h / 2 + Math.sin(riverTime * 2 + wx * .05) * 4, 14, 2);
   }
 
-  // Bridges (planks with railings, drawn over river)
   for (const b of BRIDGES) {
     const bx = b.x - camera.x, by = b.y - camera.y;
     if (bx + b.w < -10 || bx > canvas.width + 10 || by + b.h < -10 || by > canvas.height + 10) continue;
-    // Shadow under bridge
-    ctx.fillStyle = 'rgba(0,0,0,0.35)';
-    ctx.fillRect(bx - 2, by + 6, b.w + 4, b.h);
-    // Deck base
-    ctx.fillStyle = '#7a5a38';
-    ctx.fillRect(bx, by, b.w, b.h);
-    // Plank highlights
-    ctx.fillStyle = '#8e6b44';
-    for (let py = 6; py < b.h - 4; py += 12) {
-      ctx.fillRect(bx + 2, by + py, b.w - 4, 8);
-    }
-    // Plank gaps
-    ctx.fillStyle = 'rgba(40,25,10,0.6)';
-    for (let py = 14; py < b.h; py += 12) {
-      ctx.fillRect(bx + 2, by + py, b.w - 4, 1);
-    }
-    // Side railings
-    ctx.fillStyle = '#5a3e22';
-    ctx.fillRect(bx - 3, by, 5, b.h);
-    ctx.fillRect(bx + b.w - 2, by, 5, b.h);
-    // Railing posts
-    ctx.fillStyle = '#3a2614';
-    for (let py = 6; py < b.h; py += 20) {
-      ctx.fillRect(bx - 4, by + py, 7, 4);
-      ctx.fillRect(bx + b.w - 3, by + py, 7, 4);
-    }
+    ctx.fillStyle = '#332c24'; ctx.fillRect(bx, by, b.w, b.h);
+    ctx.strokeStyle = '#5a4b3a'; ctx.lineWidth = 3; ctx.strokeRect(bx, by, b.w, b.h);
   }
 
-  // Market stalls, lamps and benches make landmarks feel occupied.
-  for (const st of MARKET_STALLS) {
-    const sx = st.x - camera.x, sy = st.y - camera.y;
-    if (sx < -40 || sx > canvas.width + 40 || sy < -50 || sy > canvas.height + 40) continue;
-    ctx.fillStyle = 'rgba(0,0,0,0.25)';
-    ctx.fillRect(sx - 18, sy + 12, 42, 12);
-    ctx.fillStyle = '#5a351f';
-    ctx.fillRect(sx - 16, sy, 36, 20);
-    ctx.fillStyle = st.c;
-    ctx.beginPath();
-    ctx.moveTo(sx - 22, sy);
-    ctx.lineTo(sx + 26, sy);
-    ctx.lineTo(sx + 16, sy - 16);
-    ctx.lineTo(sx - 14, sy - 16);
-    ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.45)';
-    ctx.lineWidth = 2;
-    for (let x = -14; x <= 18; x += 12) {
-      ctx.beginPath(); ctx.moveTo(sx + x, sy - 15); ctx.lineTo(sx + x - 5, sy - 1); ctx.stroke();
-    }
-  }
+  for (const pr of STREET_PROPS) drawStreetProp(pr);
 
-  for (const pr of STREET_PROPS) {
-    const sx = pr.x - camera.x, sy = pr.y - camera.y;
-    if (sx < -30 || sx > canvas.width + 30 || sy < -40 || sy > canvas.height + 30) continue;
-    if (pr.type === 'lamp') {
-      ctx.strokeStyle = '#1d1d1d'; ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.moveTo(sx, sy + 16); ctx.lineTo(sx, sy - 16); ctx.stroke();
-      ctx.beginPath(); ctx.arc(sx, sy - 21, 6, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,220,120,0.9)'; ctx.fill();
-      ctx.beginPath(); ctx.arc(sx, sy - 21, 18, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,200,80,0.08)'; ctx.fill();
-    } else {
-      ctx.fillStyle = '#5c3b1f';
-      ctx.fillRect(sx - 16, sy - 4, 32, 7);
-      ctx.fillStyle = '#33200f';
-      ctx.fillRect(sx - 14, sy + 3, 4, 11);
-      ctx.fillRect(sx + 10, sy + 3, 4, 11);
-    }
-  }
-
-  // Blood pools (on ground, under everything)
   for (const bp of bloodPools) {
     const bx = bp.x - camera.x, by = bp.y - camera.y;
-    if (bx < -30 || bx > canvas.width + 30 || by < -30 || by > canvas.height + 30) continue;
-    ctx.beginPath();
-    ctx.ellipse(bx, by, bp.r, bp.r * 0.55, 0, 0, Math.PI * 2);
+    if (bx < -60 || bx > canvas.width + 60 || by < -60 || by > canvas.height + 60) continue;
+    ctx.save(); ctx.globalAlpha = bp.alpha;
     ctx.fillStyle = bp.color;
-    ctx.globalAlpha = bp.alpha;
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    bp.alpha *= 0.9993;
+    ctx.beginPath(); ctx.ellipse(bx, by, bp.r * 1.55, bp.r * 0.85, bp.rot || 0, 0, Math.PI * 2); ctx.fill();
+    for (let i = 0; i < 9; i++) {
+      const a = (bp.rot || 0) + i * 0.7;
+      ctx.beginPath(); ctx.ellipse(bx + Math.cos(a) * bp.r * 1.15, by + Math.sin(a) * bp.r * .65, bp.r * .38, bp.r * .14, a, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.restore();
+    bp.alpha *= 0.9991;
   }
 
-  // Map border
   ctx.shadowColor = '#e63946'; ctx.shadowBlur = 15;
   ctx.strokeStyle = '#e63946'; ctx.lineWidth = 3;
   ctx.strokeRect(-camera.x, -camera.y, MAP_W, MAP_H);
@@ -2216,7 +2172,7 @@ function drawEntity(p) {
     const slashArc = attackArcFor(p);
     ctx.beginPath();
     ctx.arc(sx, sy, slashRange + 5, p.attackAngle - slashArc / 2, p.attackAngle + slashArc / 2);
-    ctx.strokeStyle = `rgba(255,255,255,${arcAlpha * 0.5})`; ctx.lineWidth = 3; ctx.stroke();
+    ctx.strokeStyle = isFuryMe ? `rgba(100,210,255,${arcAlpha * 0.62})` : `rgba(230,25,32,${arcAlpha * 0.72})`; ctx.lineWidth = 7; ctx.stroke();
     ctx.beginPath();
     ctx.arc(sx, sy, slashRange - 10, p.attackAngle - slashArc / 2 + progress * 0.3, p.attackAngle + slashArc / 2 - progress * 0.3);
     ctx.strokeStyle = isFuryMe ? `rgba(80,180,255,${arcAlpha * 0.5})` : `rgba(230,57,70,${arcAlpha * 0.4})`;
@@ -2381,15 +2337,16 @@ function drawAtmosphere() {
 }
 
 function drawMinimap() {
-  const mW = 140, mH = 140;
+  const mW = 146, mH = 146;
   const mx = canvas.width - mW - 12, my = canvas.height - mH - 12;
   const s = mW / MAP_W;
 
-  ctx.fillStyle = 'rgba(0,0,0,0.7)';
-  ctx.beginPath(); ctx.roundRect(mx - 2, my - 2, mW + 4, mH + 4, 6); ctx.fill();
-  ctx.fillStyle = '#1a3a0e'; ctx.fillRect(mx, my, mW, mH);
+  ctx.fillStyle = 'rgba(0,0,0,0.82)';
+  ctx.beginPath(); ctx.roundRect(mx - 4, my - 4, mW + 8, mH + 8, 6); ctx.fill();
+  ctx.strokeStyle = 'rgba(230,57,70,.42)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = '#111315'; ctx.fillRect(mx, my, mW, mH);
 
-  ctx.fillStyle = '#343234';
+  ctx.fillStyle = '#2b2b2d';
   for (const r of ROADS) ctx.fillRect(mx + r.x * s, my + r.y * s, Math.max(r.w * s, 1), Math.max(r.h * s, 1));
 
   for (const pz of PLAZAS) {
@@ -2398,7 +2355,7 @@ function drawMinimap() {
   }
 
   // River
-  ctx.fillStyle = '#1565a0';
+  ctx.fillStyle = '#16455e';
   for (const r of RIVER) ctx.fillRect(mx + r.x * s, my + r.y * s, r.w * s, r.h * s);
 
   // Bridges
@@ -2429,8 +2386,13 @@ function drawMinimap() {
   ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1;
   ctx.strokeRect(mx + camera.x * s, my + camera.y * s, canvas.width * s, canvas.height * s);
 
+  ctx.fillStyle = '#e63946';
+  ctx.font = '900 9px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('KRAKÓW', mx + 6, my + 13);
+
   // Border
-  ctx.strokeStyle = 'rgba(230,57,70,0.5)'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(230,57,70,0.72)'; ctx.lineWidth = 1;
   ctx.strokeRect(mx, my, mW, mH);
 }
 
