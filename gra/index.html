@@ -361,6 +361,9 @@ const FURY_DURATION = 5200;
 const FURY_ATTACK_CD = 115;
 const FURY_RANGE = 155;
 const FURY_ARC = Math.PI * 1.55;
+const MACHETE_SCORE_STEP = 1000;
+const MACHETE_REACH_PER_STEP = 18;
+const MACHETE_LENGTH_PER_STEP = 7;
 const ATMOSPHERE_PARTICLES = 70;
 
 const RANKS = [
@@ -720,8 +723,15 @@ function getRank(score) {
 function attackCooldownFor(e) {
   return e === entities[0] && isPlayerFury() ? FURY_ATTACK_CD : ATTACK_CD;
 }
+function macheteTierFor(e) {
+  return e === entities[0] ? Math.floor(Math.max(0, e.score) / MACHETE_SCORE_STEP) : 0;
+}
+function macheteReachBonusFor(e) {
+  return macheteTierFor(e) * MACHETE_REACH_PER_STEP;
+}
 function attackRangeFor(e) {
-  return e === entities[0] && isPlayerFury() ? FURY_RANGE : MACHETE_RANGE;
+  const baseRange = e === entities[0] && isPlayerFury() ? FURY_RANGE : MACHETE_RANGE;
+  return baseRange + macheteReachBonusFor(e);
 }
 function attackArcFor(e) {
   return e === entities[0] && isPlayerFury() ? FURY_ARC : MACHETE_ARC;
@@ -2143,8 +2153,10 @@ function drawEntity(p) {
   ctx.beginPath(); ctx.arc(sx - 2, sy - PLAYER_R - 1, 6, -1.9, -0.5); ctx.stroke();
 
   // === MACHETE ===
-  const mBaseLen = 35;
-  const mLen = p.attacking ? 52 : mBaseLen;
+  const macheteTier = macheteTierFor(p);
+  const macheteLengthBonus = macheteTier * MACHETE_LENGTH_PER_STEP;
+  const mBaseLen = 35 + macheteLengthBonus;
+  const mLen = (p.attacking ? 52 : 35) + macheteLengthBonus;
   const mStartX = sx + Math.cos(p.angle) * (PLAYER_R - 2);
   const mStartY = sy + Math.sin(p.angle) * (PLAYER_R - 2);
   const mEndX = sx + Math.cos(p.angle) * (PLAYER_R + mLen);
@@ -2153,15 +2165,16 @@ function drawEntity(p) {
   // Handle
   ctx.beginPath();
   ctx.moveTo(mStartX, mStartY);
-  const mMidX = sx + Math.cos(p.angle) * (PLAYER_R + 12);
-  const mMidY = sy + Math.sin(p.angle) * (PLAYER_R + 12);
+  const handleLen = 12 + Math.min(macheteTier, 6) * 0.8;
+  const mMidX = sx + Math.cos(p.angle) * (PLAYER_R + handleLen);
+  const mMidY = sy + Math.sin(p.angle) * (PLAYER_R + handleLen);
   ctx.lineTo(mMidX, mMidY);
   ctx.strokeStyle = '#6B3410'; ctx.lineWidth = 6; ctx.stroke();
   ctx.strokeStyle = '#8B4513'; ctx.lineWidth = 4; ctx.stroke();
 
   // Blade
   const perpA = p.angle + Math.PI / 2;
-  const bladeW = p.attacking ? 5.5 : 3.5;
+  const bladeW = (p.attacking ? 5.5 : 3.5) + Math.min(macheteTier, 8) * 0.25;
   ctx.beginPath();
   ctx.moveTo(mMidX + Math.cos(perpA) * bladeW, mMidY + Math.sin(perpA) * bladeW);
   ctx.lineTo(mMidX - Math.cos(perpA) * bladeW, mMidY - Math.sin(perpA) * bladeW);
