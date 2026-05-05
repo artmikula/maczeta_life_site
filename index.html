@@ -15,6 +15,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5691945685029042"
+     crossorigin="anonymous"></script>
+
 <!-- Three.js for 3D machete -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -173,10 +177,10 @@ nav.top ul a:hover { opacity: 1; color: var(--blood); }
 .lang-toggle button:hover { opacity: 1; }
 
 @media (max-width: 760px) {
-  nav.top { padding: 14px 18px; }
-  nav.top ul { gap: 14px; }
-  nav.top ul a { font-size: 11px; }
-  nav.top .brand { font-size: 14px; }
+  nav.top { padding: 12px; flex-wrap: wrap; gap: 8px; }
+  nav.top ul { width: 100%; justify-content: center; gap: 8px 10px; flex-wrap: wrap; }
+  nav.top ul a { font-size: 10px; letter-spacing: 0.1em; }
+  nav.top .brand { width: 100%; text-align: center; font-size: 13px; letter-spacing: 0.12em; }
 }
 
 /* ============ HERO ============ */
@@ -220,16 +224,16 @@ nav.top ul a:hover { opacity: 1; color: var(--blood); }
   height: auto;
   display: block;
   margin: 0 auto 28px;
-  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.8));
+  filter: brightness(0.8) drop-shadow(0 24px 48px rgba(0,0,0,0.8));
   opacity: 0;
   animation: logoIn 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
 }
 
 @keyframes logoIn {
   0% { opacity: 0; transform: scale(0.85) translateY(40px) rotateX(15deg); filter: drop-shadow(0 0 0 rgba(0,0,0,0)) blur(16px); }
-  60% { opacity: 1; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.8)) blur(0); }
+  60% { opacity: 1; filter: brightness(0.8) drop-shadow(0 24px 48px rgba(0,0,0,0.8)) blur(0); }
   80% { transform: scale(1.02) translateY(-4px) rotateX(0deg); }
-  100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); filter: drop-shadow(0 24px 48px rgba(0,0,0,0.8)) blur(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); filter: brightness(0.8) drop-shadow(0 24px 48px rgba(0,0,0,0.8)) blur(0); }
 }
 
 .tagline-pl {
@@ -946,6 +950,107 @@ section {
 }
 
 /* ============ MERCH WAITLIST ============ */
+.book {
+  background:
+    linear-gradient(180deg, var(--black), #120c0c 55%, var(--black));
+  border-top: 1px solid rgba(201,191,165,0.08);
+  overflow: hidden;
+}
+.book-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  gap: 72px;
+  align-items: center;
+}
+.book-cover {
+  position: relative;
+  background: #0d0a0a;
+  box-shadow: 24px 24px 0 rgba(179,21,26,0.2), 0 28px 70px rgba(0,0,0,0.42);
+  overflow: hidden;
+  min-height: 520px;
+  display: grid;
+  place-items: center;
+}
+.book-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: contrast(1.03) saturate(0.92);
+}
+.book-cover-missing::before {
+  content: attr(data-cover);
+  padding: 42px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 6vw, 96px);
+  line-height: 0.86;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  text-align: center;
+  text-transform: uppercase;
+}
+.book-cover-missing::after {
+  content: 'WKRÓTCE';
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--blood);
+}
+.book-copy p {
+  color: var(--bone);
+  font-size: clamp(17px, 1.35vw, 21px);
+  margin-bottom: 20px;
+}
+.book-copy p:first-of-type {
+  color: var(--cream);
+  font-size: clamp(21px, 2vw, 30px);
+  font-style: italic;
+  line-height: 1.35;
+}
+.book-copy strong { color: var(--blood); font-weight: 600; }
+.book-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 22px;
+  margin: 28px 0 34px;
+  list-style: none;
+}
+.book-list li {
+  color: var(--bone);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(201,191,165,0.12);
+  padding-top: 10px;
+}
+.book-list li::before { content: '/ '; color: var(--blood); }
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.book-meta span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--cream);
+  text-transform: uppercase;
+  border: 1px solid rgba(201,191,165,0.25);
+  padding: 9px 12px;
+}
+@media (max-width: 900px) {
+  .book-wrap { grid-template-columns: 1fr; gap: 52px; }
+  .book-cover { min-height: 420px; box-shadow: 14px 14px 0 rgba(179,21,26,0.22); }
+  .book-list { grid-template-columns: 1fr; }
+}
+
 .merch {
   background: var(--black);
   text-align: center;
@@ -1124,6 +1229,25 @@ footer .legal {
   text-transform: uppercase;
 }
 
+.visitor-count {
+  position: fixed;
+  right: 10px;
+  bottom: 8px;
+  z-index: 80;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--bone);
+  opacity: 0;
+  text-transform: uppercase;
+  line-height: 1;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.visitor-count.visible {
+  opacity: 0.42;
+}
+
 /* ============ REVEAL ANIMATIONS (UPGRADED) ============ */
 .reveal {
   opacity: 0;
@@ -1219,6 +1343,17 @@ footer .legal {
   transition: opacity 0.1s;
 }
 
+/* ============ SUBTLE AD SLOTS ============ */
+.ad-slot {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.ad-slot:hover { opacity: 0.9; }
+.ad-slot ins { display: block; }
+
 /* ============ MOBILE: disable heavy effects ============ */
 @media (max-width: 760px) {
   * { cursor: auto !important; }
@@ -1245,11 +1380,12 @@ footer .legal {
 <nav class="top">
   <div class="brand">MACZETA <b>×</b> LIFE</div>
   <ul>
-    <li><a href="#manifesto" data-i18n="nav.about">Manifest</a></li>
+    <li><a href="#manifesto" data-i18n="nav.about">Info</a></li>
     <li><a href="#music" data-i18n="nav.music">Muzyka</a></li>
-    <li><a href="#zine" data-i18n="nav.zine">Zine</a></li>
+    <li><a href="#zine" data-i18n="nav.zine">Kronika</a></li>
     <li><a href="#game" data-i18n="nav.game">Gra</a></li>
-    <li><a href="#merch" data-i18n="nav.merch">Merch</a></li>
+    <li><a href="#book" data-i18n="nav.book">Książka</a></li>
+    <li><a href="#merch" data-i18n="nav.merch">Ubrania</a></li>
     <li>
       <div class="lang-toggle">
         <button class="active" data-lang="pl">PL</button>
@@ -1270,7 +1406,8 @@ footer .legal {
     <div class="hero-cta">
       <a href="/gra/" target="_blank" class="btn primary btn-game-hero" data-i18n="cta.game">⚔️ Graj</a>
       <a href="#music" class="btn" data-i18n="cta.music">Słuchaj</a>
-      <a href="#merch" class="btn" data-i18n="cta.merch">Merch</a>
+      <a href="#book" class="btn" data-i18n="cta.book">Książka</a>
+      <a href="#merch" class="btn" data-i18n="cta.merch">Ubrania</a>
     </div>
   </div>
   <div class="scroll-hint">↓</div>
@@ -1284,7 +1421,7 @@ footer .legal {
       <img src="floral-mask.jpg" alt="Folk balaclava">
     </div>
     <div class="manifesto-text reveal-right">
-      <div class="section-label" data-i18n="about.label">Manifest</div>
+      <div class="section-label" data-i18n="about.label">O Nas</div>
       <h2 class="section-title glitch-text">Maczeta. Kominiara.<em>Martwe kurwy</em></h2>
       <p data-i18n="about.lead">Babcia w masce, dziadek z maczetą i chuj. Krakowski beton i łowicki haft. Nie udajemy nic — to jest <strong>nasza kultura</strong>.</p>
       <p data-i18n="about.body1">Maczeta Life zaczęła się od jednej piosenki i jednej maczety. Folk drill, kobiety w kominiarach, polskie tradycyjne stroje i teksty. <strong>Bez grzecznego pitolenia.</strong></p>
@@ -1340,12 +1477,23 @@ footer .legal {
   </div>
 </section>
 
+<!-- =================== AD SLOT 1 (hr1) =================== -->
+<div class="ad-slot">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5691945685029042"
+       data-ad-slot="2773648396"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
 <!-- =================== ZINE / GALLERY =================== -->
 <section class="zine" id="zine">
   <div class="section-edge"></div>
   <div class="zine-wrap">
     <div class="reveal" style="margin-bottom: 50px;">
-      <div class="section-label" data-i18n="zine.label">Zine</div>
+      <div class="section-label" data-i18n="zine.label">Kronika</div>
       <h2 class="section-title glitch-text" data-i18n="zine.title">Świat <em>Maczety</em></h2>
     </div>
     <div class="zine-grid reveal-scale">
@@ -1400,12 +1548,42 @@ footer .legal {
   </div>
 </section>
 
+<!-- =================== BOOK =================== -->
+<section class="book" id="book">
+  <div class="section-edge"></div>
+    <div class="book-wrap">
+    <div class="book-cover reveal-left" data-cover="Poradnik Maczeciarza">
+      <img src="poradnik-maczeciarza.jpg" alt="Poradnik Maczeciarza — okładka książki" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('book-cover-missing');">
+    </div>
+    <div class="book-copy reveal-right">
+      <div class="section-label" data-i18n="book.label">Książka</div>
+      <h2 class="section-title glitch-text" data-i18n="book.title">Poradnik <em>Maczeciarza</em></h2>
+      <p data-i18n="book.lead"><strong>Maczeta Life</strong> robi nową cyfrową książkę: mrocznie śmieszny, ciężki wizualnie przewodnik po polskim folklorze ulicznym, kulturze maczety, absurdalnym survivalu i wschodnioeuropejskim chaosie.</p>
+      <p data-i18n="book.body">To nie będzie nudny podręcznik. Bardziej satyra, encyklopedia kultury i kolekcjonerski zine w jednym. Po polsku, z energią muzyki: surowo, absurdalnie, zabawnie i niebezpiecznie wyglądająco, ale jasno jako rozrywka.</p>
+      <ul class="book-list">
+        <li data-i18n="book.item1">Style maczet ze świata</li>
+        <li data-i18n="book.item2">Historia i kulturowe użycia</li>
+        <li data-i18n="book.item3">Polska i wschodnia inspiracja</li>
+        <li data-i18n="book.item4">Fikcyjne archetypy maczeciarza</li>
+        <li data-i18n="book.item5">Bezpieczeństwo i legalność</li>
+        <li data-i18n="book.item6">AI artwork i kino brudu</li>
+      </ul>
+      <div class="book-meta">
+        <span data-i18n="book.meta1">Format: ebook</span>
+        <span data-i18n="book.meta2">Język: polski</span>
+        <span data-i18n="book.meta3">Premiera: wkrótce</span>
+      </div>
+      <a href="#merch" class="btn primary" data-i18n="book.cta">Zapisz się po info</a>
+    </div>
+  </div>
+</section>
+
 <!-- =================== MERCH WAITLIST =================== -->
 <section class="merch" id="merch">
   <div class="section-edge"></div>
   <div class="merch-inner">
     <div class="reveal">
-      <div class="section-label" style="justify-content:center" data-i18n="merch.label">Merch · Wkrótce</div>
+      <div class="section-label" style="justify-content:center" data-i18n="merch.label">Ubrania · Wkrótce</div>
       <h2 class="section-title glitch-text" data-i18n="merch.title">Bluzy. Kominiary. <em>Haft.</em></h2>
       <p data-i18n="merch.body">Pierwsza kolekcja w produkcji. Limitowane sztuki, ręczny haft, polski folk. Zapisz email — będziesz pierwszym maczeciarzem.</p>
     </div>
@@ -1423,6 +1601,13 @@ footer .legal {
         <figcaption>
           <span class="merch-product-name" data-i18n="merch.product2.name">Kolekcja kominiar · 5 wzorów</span>
           <span class="merch-product-meta" data-i18n="merch.product2.meta">Ręczny haft · sample</span>
+        </figcaption>
+      </figure>
+      <figure class="merch-product reveal">
+        <img src="merch-tshirts.jpg" alt="Maczeta Life — kolekcja koszulek" loading="lazy">
+        <figcaption>
+          <span class="merch-product-name" data-i18n="merch.product3.name">Koszulki · 6 wzorów</span>
+          <span class="merch-product-meta" data-i18n="merch.product3.meta">Oversize · sample</span>
         </figcaption>
       </figure>
     </div>
@@ -1452,6 +1637,17 @@ footer .legal {
   <span class="ico-on">❚❚</span>
 </button>
 
+<!-- =================== AD SLOT 2 (hr2) =================== -->
+<div class="ad-slot">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5691945685029042"
+       data-ad-slot="1460566722"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
 <!-- =================== FOOTER =================== -->
 <footer>
   <div class="footer-divider"></div>
@@ -1464,6 +1660,10 @@ footer .legal {
   </div>
   <div class="legal">© 2026 Maczeta Life · Kraków</div>
 </footer>
+
+<div class="visitor-count" id="visitor-count" aria-live="polite">
+  Wizyty: <span data-visitor-count></span>
+</div>
 
 <script>
 // =====================================================
@@ -1981,13 +2181,13 @@ document.querySelectorAll(revealTypes).forEach(el => io.observe(el));
 // =====================================================
 const dict = {
   pl: {
-    "nav.about": "Manifest", "nav.music": "Muzyka", "nav.zine": "Zine",
-    "nav.game": "Gra", "nav.merch": "Merch",
+    "nav.about": "Info", "nav.music": "Muzyka", "nav.zine": "Kronika",
+    "nav.game": "Gra", "nav.book": "Książka", "nav.merch": "Ubrania",
     "hero.pl": "MACZETA LIFE · ŻYCIE MACZETY",
     "hero.en": "Krakowski folk drill",
-    "cta.music": "Słuchaj", "cta.game": "⚔️ Graj", "cta.merch": "Merch",
+    "cta.music": "Słuchaj", "cta.game": "⚔️ Graj", "cta.book": "Książka", "cta.merch": "Ubrania",
     "cta.game.float": "⚔️ Graj teraz",
-    "about.label": "Manifest",
+    "about.label": "O Nas",
     "about.lead": "Babcia w masce, dziadek napierdala maczetą. Krakowski beton i łowicki haft. Nie udajemy nic — to jest <strong>nasza kultura</strong>.",
     "about.body1": "Maczeta Life zaczęła się od jednej piosenki i jednej maczety. Folk drill, kobiety w kominiarach, polskie tradycyjne stroje, teksty o wybebeszaniu. <strong>Bez grzecznego pitolenia.</strong>",
     "about.body2": "Teraz to muzyka, gra, niedługo ubrania. Bluzy, kominiary z haftem, rzeczy które nosisz, gdy chcesz, żeby ludzie wiedzieli skąd jesteś.",
@@ -1997,7 +2197,7 @@ const dict = {
     "track2.meta": "Wkrótce",
     "track2.desc": "Następny kawałek w produkcji. Zapisz się na liste, żeby dostać go pierwszy.",
     "track2.notify": "Powiadom mnie",
-    "zine.label": "Zine",
+    "zine.label": "Kronika",
     "zine.title": "Świat <em>Maczety</em>",
     "game.label": "Gra",
     "game.title": "Krakowski <em>wpierdol</em><br>w przeglądarce",
@@ -2005,26 +2205,44 @@ const dict = {
     "game.body2": "„Babcia by klęła z dumy.\"",
     "game.spec1": "Pobrań", "game.spec2": "Do startu", "game.spec3": "Telefon OK",
     "game.cta": "⚔️ Wbijam na rejon",
-    "merch.label": "Merch · Wkrótce",
+    "book.kicker": "Coming Soon · Ebook",
+    "book.status": "Status: w produkcji",
+    "book.label": "Książka",
+    "book.title": "Poradnik <em>Maczeciarza</em>",
+    "book.lead": "<strong>Maczeta Life</strong> robi nową cyfrową książkę: mrocznie śmieszny, ciężki wizualnie przewodnik po polskim folklorze ulicznym, kulturze maczety, absurdalnym survivalu i wschodnioeuropejskim chaosie.",
+    "book.body": "To nie będzie nudny podręcznik. Bardziej satyra, encyklopedia kultury i kolekcjonerski zine w jednym. Po polsku, z energią muzyki: surowo, absurdalnie, zabawnie i niebezpiecznie wyglądająco, ale jasno jako rozrywka.",
+    "book.item1": "Style maczet ze świata",
+    "book.item2": "Historia i kulturowe użycia",
+    "book.item3": "Polska i wschodnia inspiracja",
+    "book.item4": "Fikcyjne archetypy maczeciarza",
+    "book.item5": "Bezpieczeństwo i legalność",
+    "book.item6": "AI artwork i kino brudu",
+    "book.meta1": "Format: ebook",
+    "book.meta2": "Język: polski",
+    "book.meta3": "Premiera: wkrótce",
+    "book.cta": "Zapisz się po info",
+    "merch.label": "Ubrania · Wkrótce",
     "merch.title": "Bluzy. Kominiary. <em>Haft.</em>",
     "merch.body": "Pierwsza kolekcja w produkcji. Limitowane sztuki, ręczny haft, polski folk. Zapisz email — będziesz pierwszy.",
     "merch.product1.name": "Hoodie · Maska + Maczety",
     "merch.product1.meta": "Pierwszy drop · sample",
     "merch.product2.name": "Kolekcja kominiar · 5 wzorów",
     "merch.product2.meta": "Ręczny haft · sample",
+    "merch.product3.name": "Koszulki · 6 wzorów",
+    "merch.product3.meta": "Oversize · sample",
     "merch.submit": "Zapisz",
     "merch.tag3": "Koszulka", "merch.tag4": "Naszywka",
     "waitlist.success": "✓ Zapisano. Będziemy w kontakcie.",
     "waitlist.error": "Wpisz prawidłowy email."
   },
   en: {
-    "nav.about": "Manifesto", "nav.music": "Music", "nav.zine": "Zine",
-    "nav.game": "Game", "nav.merch": "Merch",
+    "nav.about": "Info", "nav.music": "Music", "nav.zine": "Chronicle",
+    "nav.game": "Game", "nav.book": "Book", "nav.merch": "Clothing",
     "hero.pl": "MACZETA LIFE",
     "hero.en": "Polish folk drill from Kraków",
-    "cta.music": "Listen", "cta.game": "⚔️ Play", "cta.merch": "Merch",
+    "cta.music": "Listen", "cta.game": "⚔️ Play", "cta.book": "Book", "cta.merch": "Clothing",
     "cta.game.float": "⚔️ Play now",
-    "about.label": "Manifesto",
+    "about.label": "About",
     "about.lead": "Grandma in a balaclava, grandpa gutting whores with a machete. Kraków concrete and Polish folk embroidery. Nothing fake — this is <strong>our folk</strong>.",
     "about.body1": "Maczeta Life started with one song and one mask. Folk drill, women in ski masks, traditional Polish dresses, sharp street lyrics. <strong>No polite bullshit.</strong>",
     "about.body2": "Right now it's music and a game. Soon clothing — hoodies, embroidered balaclavas, things you wear when you want people to know where you're from.",
@@ -2034,7 +2252,7 @@ const dict = {
     "track2.meta": "Coming soon",
     "track2.desc": "Next track in production. Get on the list to hear it first.",
     "track2.notify": "Notify me",
-    "zine.label": "Zine",
+    "zine.label": "Chronicle",
     "zine.title": "World of <em>Maczeta</em>",
     "game.label": "Game",
     "game.title": "Kraków <em>chaos</em><br>in your browser",
@@ -2042,13 +2260,31 @@ const dict = {
     "game.body2": "\"Grandma would curse with pride.\"",
     "game.spec1": "Downloads", "game.spec2": "To start", "game.spec3": "Mobile OK",
     "game.cta": "⚔️ Enter the block",
-    "merch.label": "Merch · Coming soon",
+    "book.kicker": "Coming Soon · Ebook",
+    "book.status": "Status: in development",
+    "book.label": "Book",
+    "book.title": "Poradnik <em>Maczeciarza</em>",
+    "book.lead": "<strong>Maczeta Life</strong> is working on a new digital book: a darkly funny, visually heavy guide inspired by Polish street folklore, machete culture, absurd survival advice, and Eastern European chaos.",
+    "book.body": "This will not be a boring handbook. It is part satire, part cultural encyclopedia, part collector-style zine. Written mainly for the Polish audience with the same energy as the music: raw, absurd, funny, and clearly entertainment.",
+    "book.item1": "Machete styles worldwide",
+    "book.item2": "Origins and cultural uses",
+    "book.item3": "Polish and Eastern inspiration",
+    "book.item4": "Fictional maczeciarz archetypes",
+    "book.item5": "Safety and legality warnings",
+    "book.item6": "AI artwork and gritty visuals",
+    "book.meta1": "Format: ebook",
+    "book.meta2": "Language: Polish",
+    "book.meta3": "Release: coming soon",
+    "book.cta": "Join for updates",
+    "merch.label": "Clothing · Coming soon",
     "merch.title": "Hoodies. Masks. <em>Embroidery.</em>",
     "merch.body": "First drop in production. Limited pieces, hand embroidery, Polish folk. Drop your email — you'll be first.",
     "merch.product1.name": "Hoodie · Mask + Machetes",
     "merch.product1.meta": "First drop · sample",
     "merch.product2.name": "Balaclava collection · 5 patterns",
     "merch.product2.meta": "Hand embroidery · sample",
+    "merch.product3.name": "T-shirts · 6 designs",
+    "merch.product3.meta": "Oversize · sample",
     "merch.submit": "Submit",
     "merch.tag3": "T-Shirt", "merch.tag4": "Patch",
     "waitlist.success": "✓ You're in. We'll be in touch.",
@@ -2088,7 +2324,7 @@ try {
 // =====================================================
 const form = document.getElementById('waitlist');
 const msg = document.getElementById('waitlist-msg');
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = form.querySelector('input').value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -2097,10 +2333,20 @@ form.addEventListener('submit', (e) => {
     return;
   }
   try {
-    const list = JSON.parse(localStorage.getItem('mczt-waitlist') || '[]');
-    list.push({ email, ts: Date.now() });
-    localStorage.setItem('mczt-waitlist', JSON.stringify(list));
-  } catch(err) {}
+    const response = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+    if (!response.ok) throw new Error('waitlist failed');
+  } catch(err) {
+    msg.textContent = dict[currentLang]['waitlist.error'];
+    msg.classList.add('show');
+    return;
+  }
   msg.textContent = dict[currentLang]['waitlist.success'];
   msg.classList.add('show');
   form.reset();
@@ -2158,6 +2404,31 @@ window.addEventListener('blur', () => {
     setPlaying(false);
   }
 });
+
+
+// =====================================================
+// VISITOR COUNTER
+// =====================================================
+(async () => {
+  const visitorCount = document.getElementById('visitor-count');
+  const value = document.querySelector('[data-visitor-count]');
+  if (!visitorCount || !value) return;
+
+  try {
+    const response = await fetch('/api/visit', {
+      method: 'POST',
+      headers: { 'accept': 'application/json' },
+      cache: 'no-store',
+    });
+    if (!response.ok) return;
+
+    const data = await response.json();
+    if (!Number.isFinite(data.visits)) return;
+
+    value.textContent = data.visits.toLocaleString(document.documentElement.lang || 'pl');
+    visitorCount.classList.add('visible');
+  } catch (err) {}
+})();
 </script>
 </body>
 </html>
