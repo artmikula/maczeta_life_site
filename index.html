@@ -1500,6 +1500,7 @@ footer .legal {
     <li><a href="#game" data-i18n="nav.game">Gra</a></li>
     <li><a href="#book" data-i18n="nav.book">Książka</a></li>
     <li><a href="#merch" data-i18n="nav.merch">Ubrania</a></li>
+    <li><a href="#grypsowanie" data-i18n="nav.gryps">Gadka</a></li>
     <li>
       <div class="lang-toggle">
         <button class="active" data-lang="pl">PL</button>
@@ -1738,6 +1739,26 @@ footer .legal {
       <div class="merch-tag" data-i18n="merch.tag3">Koszulka</div>
       <div class="merch-tag" data-i18n="merch.tag4">Patch</div>
     </div>
+  </div>
+</section>
+
+<!-- =================== GRYPSOWANIE =================== -->
+<section class="grypsowanie" id="grypsowanie">
+  <div class="section-edge reveal"></div>
+  <div class="reveal">
+    <div class="section-label" data-i18n="gryps.label">Grypsowanie</div>
+    <h2 class="section-title" data-i18n="gryps.title">Gadaj.</h2>
+  </div>
+  <div class="gryps-box reveal">
+    <div class="gryps-messages" id="gryps-messages">
+      <p class="gryps-empty" data-i18n="gryps.empty">Jeszcze nikt nie gada. Zacznij.</p>
+    </div>
+    <form class="gryps-form" id="gryps-form">
+      <input class="gryps-nick" id="gryps-nick" type="text" maxlength="20" placeholder="ksywka" autocomplete="off">
+      <input class="gryps-msg-input" id="gryps-msg" type="text" maxlength="280" placeholder="napisz coś..." autocomplete="off">
+      <button type="submit" class="gryps-submit" data-i18n="gryps.submit">Wyślij</button>
+    </form>
+    <div class="gryps-status" id="gryps-status"></div>
   </div>
 </section>
 
