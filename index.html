@@ -1361,6 +1361,120 @@ footer .legal {
   #particle-canvas { opacity: 0.3; }
   .game-float-btn { bottom: 14px; left: 14px; }
 }
+
+/* ===== GRYPSOWANIE SHOUTBOX ===== */
+.grypsowanie {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.gryps-box {
+  max-width: 680px;
+  margin: 32px auto 0;
+  background: #0d0d0d;
+  border: 1px solid #222;
+  border-top: 2px solid var(--blood);
+}
+.gryps-messages {
+  min-height: 120px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gryps-messages::-webkit-scrollbar { width: 4px; }
+.gryps-messages::-webkit-scrollbar-track { background: #111; }
+.gryps-messages::-webkit-scrollbar-thumb { background: var(--blood); }
+.gryps-msg-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-align: left;
+}
+.gryps-nick-display {
+  color: var(--blood);
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+.gryps-text {
+  color: var(--cream);
+  font-size: 14px;
+  line-height: 1.4;
+  flex: 1;
+  word-break: break-word;
+}
+.gryps-time {
+  color: #444;
+  font-size: 11px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.gryps-empty {
+  color: #444;
+  font-size: 13px;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+.gryps-form {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid #1e1e1e;
+}
+.gryps-nick {
+  width: 120px;
+  flex-shrink: 0;
+  background: #111;
+  border: none;
+  border-right: 1px solid #222;
+  color: var(--cream);
+  padding: 12px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+}
+.gryps-nick::placeholder { color: #444; }
+.gryps-msg-input {
+  flex: 1;
+  background: #111;
+  border: none;
+  border-right: 1px solid #222;
+  color: var(--cream);
+  padding: 12px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+}
+.gryps-msg-input::placeholder { color: #444; }
+.gryps-submit {
+  background: transparent;
+  border: none;
+  color: var(--blood);
+  padding: 12px 18px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+.gryps-submit:hover { background: var(--blood); color: var(--cream); }
+.gryps-status {
+  min-height: 28px;
+  padding: 4px 20px;
+  font-size: 12px;
+  text-align: left;
+}
+.gryps-status-ok { color: #5a9; }
+.gryps-status-error { color: var(--blood); }
+@media (max-width: 600px) {
+  .gryps-nick { width: 80px; }
+  .gryps-box { margin: 24px 16px 0; }
+}
 </style>
 </head>
 <body>
