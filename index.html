@@ -2576,6 +2576,98 @@ window.addEventListener('blur', () => {
     visitorCount.classList.add('visible');
   } catch (err) {}
 })();
+
+// =====================================================
+// GRYPSOWANIE SHOUTBOX
+// =====================================================
+(function() {
+  const form = document.getElementById('gryps-form');
+  const nickInput = document.getElementById('gryps-nick');
+  const msgInput = document.getElementById('gryps-msg');
+  const messagesEl = document.getElementById('gryps-messages');
+  const statusEl = document.getElementById('gryps-status');
+  if (!form) return;
+
+  let statusTimer = null;
+
+  try { nickInput.value = localStorage.getItem('gryps_nick') || ''; } catch(e) {}
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function relTime(ts) {
+    const diff = Math.floor((Date.now() - new Date(ts)) / 1000);
+    if (diff < 60) return diff + 's';
+    if (diff < 3600) return Math.floor(diff / 60) + 'm';
+    if (diff < 86400) return Math.floor(diff / 3600) + 'h';
+    return Math.floor(diff / 86400) + 'd';
+  }
+
+  function renderMessages(messages) {
+    if (!messages.length) {
+      messagesEl.innerHTML = '<p class="gryps-empty">' + (dict[currentLang]['gryps.empty'] || 'Jeszcze nikt nie gada. Zacznij.') + '</p>';
+      return;
+    }
+    messagesEl.innerHTML = messages.map(function(m) {
+      return '<div class="gryps-msg-row">' +
+        '<span class="gryps-nick-display">' + escHtml(m.nick) + '</span>' +
+        '<span class="gryps-text">' + escHtml(m.text) + '</span>' +
+        '<span class="gryps-time">' + relTime(m.ts) + '</span>' +
+        '</div>';
+    }).join('');
+  }
+
+  function showStatus(msg, isError) {
+    statusEl.textContent = msg;
+    statusEl.className = 'gryps-status ' + (isError ? 'gryps-status-error' : 'gryps-status-ok');
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function() {
+      statusEl.textContent = '';
+      statusEl.className = 'gryps-status';
+    }, 3000);
+  }
+
+  async function loadMessages() {
+    try {
+      const res = await fetch('/api/grypsowanie');
+      if (!res.ok) return;
+      const data = await res.json();
+      renderMessages(data.messages || []);
+    } catch(e) {}
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const nick = nickInput.value.trim();
+    const text = msgInput.value.trim();
+    if (!nick || !text) return;
+    try { localStorage.setItem('gryps_nick', nick); } catch(e) {}
+    try {
+      const res = await fetch('/api/grypsowanie', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ nick: nick, text: text }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showStatus(data.error || dict[currentLang]['gryps.rate_limit'], true);
+        return;
+      }
+      msgInput.value = '';
+      await loadMessages();
+    } catch(e) {
+      showStatus('Błąd połączenia.', true);
+    }
+  });
+
+  loadMessages();
+  setInterval(loadMessages, 30000);
+})();
 </script>
 </body>
 </html>
