@@ -1,0 +1,15 @@
+name = "maczetalife"
+pages_build_output_dir = "."
+compatibility_date = "2026-05-03"
+
+[[kv_namespaces]]
+binding = "VISITOR_COUNTER"
+id = "f37a26b5fe7449508de8f5a52ce20bfc"
+
+[[kv_namespaces]]
+binding = "WAITLIST"
+id = "fc9b7dbfd41b481c94d8f65d2ef2eee2"
+
+[[kv_namespaces]]
+binding = "GRYPS"
+id = "999a1fa0f40840bb8f961da0775921a6"
