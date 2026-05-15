@@ -106,10 +106,44 @@ body::before {
   z-index: 9999;
 }
 
+/* ============ BOOK PROMO STRIP ============ */
+.book-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 110;
+  background: var(--blood);
+  color: var(--cream);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #000;
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s;
+}
+.book-strip:hover { background: var(--blood-deep); }
+.book-strip b { color: #fff; font-weight: 700; }
+.book-strip .price {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.25);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+@media (max-width: 600px) {
+  .book-strip { font-size: 10px; letter-spacing: 0.12em; padding: 7px 10px; }
+  .book-strip .price { margin-left: 6px; padding: 1px 6px; }
+}
+
 /* ============ NAV ============ */
 nav.top {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 32px; left: 0; right: 0;
   z-index: 100;
   display: flex;
   justify-content: space-between;
@@ -177,7 +211,7 @@ nav.top ul a:hover { opacity: 1; color: var(--blood); }
 .lang-toggle button:hover { opacity: 1; }
 
 @media (max-width: 760px) {
-  nav.top { padding: 12px; flex-wrap: wrap; gap: 8px; }
+  nav.top { top: 28px; padding: 12px; flex-wrap: wrap; gap: 8px; }
   nav.top ul { width: 100%; justify-content: center; gap: 8px 10px; flex-wrap: wrap; }
   nav.top ul a { font-size: 10px; letter-spacing: 0.1em; }
   nav.top .brand { width: 100%; text-align: center; font-size: 13px; letter-spacing: 0.12em; }
@@ -1229,6 +1263,23 @@ footer .legal {
   text-transform: uppercase;
 }
 
+footer .made-by {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: #b8ff3a;
+  text-decoration: none;
+  text-transform: lowercase;
+  text-shadow: 0 0 10px rgba(184, 255, 58, 0.35);
+  transition: color 0.2s, text-shadow 0.2s;
+}
+footer .made-by:hover {
+  color: #d6ff7a;
+  text-shadow: 0 0 14px rgba(184, 255, 58, 0.6);
+}
+
 .visitor-count {
   position: fixed;
   right: 10px;
@@ -1367,6 +1418,22 @@ footer .legal {
   padding: 80px 0 60px;
   text-align: center;
 }
+.grypsowanie .section-label {
+  font-size: 16px;
+  letter-spacing: 0.4em;
+  color: var(--cream);
+  justify-content: center;
+  margin-bottom: 22px;
+}
+.grypsowanie .section-label::before { background: var(--cream); width: 48px; }
+.grypsowanie .section-label::after {
+  content: '';
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: var(--cream);
+}
+.grypsowanie .section-title { font-size: clamp(56px, 8vw, 110px); }
 .gryps-box {
   max-width: 680px;
   margin: 32px auto 0;
@@ -1489,6 +1556,12 @@ footer .legal {
 
 <!-- =================== SECTION FLASH =================== -->
 <div class="section-flash" id="section-flash"></div>
+
+<!-- =================== BOOK PROMO STRIP =================== -->
+<a class="book-strip" href="#book">
+  <span data-i18n="strip.book"><b>Poradnik Maczeciarza</b> — wkrótce w sprzedaży</span>
+  <span class="price">19 PLN</span>
+</a>
 
 <!-- =================== NAV =================== -->
 <nav class="top">
@@ -1794,6 +1867,7 @@ footer .legal {
     <a href="mailto:info@maczetalife.com">Email</a>
   </div>
   <div class="legal">© 2026 Maczeta Life · Kraków</div>
+  <a class="made-by" href="https://centipede.dev" target="_blank" rel="noopener">made by centipede.dev</a>
 </footer>
 
 <div class="visitor-count" id="visitor-count" aria-live="polite">
@@ -2373,6 +2447,7 @@ const dict = {
     "gryps.submit": "Wyślij",
     "gryps.rate_limit": "Chwila oddechu — 1 post na minutę.",
     "gryps.empty": "Jeszcze nikt nie gada. Zacznij.",
+    "strip.book": "<b>Poradnik Maczeciarza</b> — wkrótce w sprzedaży",
     "waitlist.success": "✓ Zapisano. Będziemy w kontakcie.",
     "waitlist.error": "Wpisz prawidłowy email."
   },
@@ -2434,6 +2509,7 @@ const dict = {
     "gryps.submit": "Send",
     "gryps.rate_limit": "Slow down — 1 post per minute.",
     "gryps.empty": "Nobody's talking yet. Start.",
+    "strip.book": "<b>Poradnik Maczeciarza</b> — coming soon",
     "waitlist.success": "✓ You're in. We'll be in touch.",
     "waitlist.error": "Please enter a valid email."
   }
